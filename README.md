@@ -410,7 +410,7 @@ In This Example we will use The Genetic Algorithm to solve The travelling salesm
 The Travelling Salesman can ve expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
 
 <div align="center" >
-<img src="resources/TSPFormula.PNG" width="250px" height="50px">
+<img src="resources/TspFormula.PNG" width="250px" height="50px">
 </div>
 
 but before going further we need to answer this questions :

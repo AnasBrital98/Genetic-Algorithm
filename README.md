@@ -387,7 +387,7 @@ but before going further we need to answer this questions :
 Genetic Algorithm gives as this result which very good , I intentionally choose a small population size, so we can see the steps, because the genetic algorithm is very fast to optimize this simple function that we have  , if we use a large population size .
 
 <div align="center" >
-<img src="resources/OptimizeMathFunction.PNG" width="400px" height="200px">
+<img src="resources/OptimizeMathFunction.png" width="400px" height="200px">
 </div>
 
 
@@ -410,7 +410,7 @@ In This Example we will use The Genetic Algorithm to solve The travelling salesm
 The Travelling Salesman can ve expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
 
 <div align="center" >
-<img src="resources/TSPFormula.png" width="250px" height="50px">
+<img src="resources/TSPFormula.PNG" width="250px" height="50px">
 </div>
 
 but before going further we need to answer this questions :
@@ -440,11 +440,11 @@ but before going further we need to answer this questions :
 <p>
     The Fitness Function in Our Case is The function that calculate the Distance of candidate path , which is represented as bellow :
     <div align="center" >
-    <img src="resources/fitness.png" width="250px" height="50px">
+    <img src="resources/fitness.PNG" width="250px" height="50px">
     </div>
     with d(T[i] , T[j]) is the euclidean distance function , that give us the distance between the city number i and the city number j in The T trajectory , we can express this function using this formula :
     <div align="center" >
-    <img src="resources/distance.png" width="250px" height="50px">
+    <img src="resources/distance.PNG" width="250px" height="50px">
     </div>
 </p>
 

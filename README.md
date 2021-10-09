@@ -1,18 +1,10 @@
----
-layout: post
-title:  Genetic Algorithm.
-date:   2021-09-24 13:20:00
-description: Genetic Algorithm Explained Using Illustrations . 
-Article_id : 24
-Image_cover : genetic-algorithm.jpg
----
 # Genetic Algorithm Explained
 
 <p>
 In This Article i will try to give an Introduction to Genetic Algorithm , and we will see how can we use it to solve some very complicated Problems .
 
 <div align="center" >
-<img src="Ph/GeneticAlgoCover.jpg" width="600px" height="300px">
+<img src="resources/GeneticAlgoCover.jpg" width="600px" height="300px">
 </div>
 
 ## Article Summary :
@@ -50,7 +42,7 @@ relying on biologically inspired operators such as mutation, crossover and selec
 ## 2. Genetic Algorithm PseudoCode :
 
 <div align="center" >
-<img src="Ph/Genetic-Algorithm-PseudoCode.svg" width="300px" height="400px">
+<img src="resources/Genetic-Algorithm-PseudoCode.svg" width="300px" height="400px">
 </div>
 
 ## 3. essential Terms :
@@ -59,7 +51,7 @@ relying on biologically inspired operators such as mutation, crossover and selec
 A population is a group of individuals or Chromosomes and each individual is a candidate solution to The problem.
 
 <div align="center" >
-<img src="Ph/Population.svg" width="700px" height="300px">
+<img src="resources/Population.svg" width="700px" height="300px">
 </div>
 
 ### 3.2 Chromosome  :
@@ -73,26 +65,26 @@ A Chromosome Contains a list of Parameters , this parameters we call them genes 
 * Binary Encoding : This is The most common method of encoding , where we represents a Chromosome with a String of bits (0 and 1) , this method used to solve problems like knapsack problem and Optimizing a Mathematical Functions (we will se an Example later) .
 
 <div align="center" >
-<img src="Ph/BinaryEncoding.svg" width="700px" height="200px">
+<img src="resources/BinaryEncoding.svg" width="700px" height="200px">
 </div>  
 
 * Value Encoding : represents a Chromosome as a set of values , for Example we can use this encoding to optimize a neural network , to find the best weights and biases for our network (we will see an Example later ).
 
 <div align="center" >
-<img src="Ph/ValueEncoding.svg" width="700px" height="200px">
+<img src="resources/ValueEncoding.svg" width="700px" height="200px">
 </div>
 
 * Order Encoding : Each Chromosome represents a sequence of Elements , Used in Problems such as Travelling Salesman problem (we will see an Example later ). 
 
 <div align="center" >
-<img src="Ph/OrderEncoding.svg" width="700px" height="200px">
+<img src="resources/OrderEncoding.svg" width="700px" height="200px">
 </div>
 
 ### 3.5 Fitness Function :  
 A fitness function is a particular type of objective function which takes as input a candidate solution and outputs the quality of this solution, therefore the fitness function makes it possible to evaluate the candidate solutions .
 
 <div align="center" >
-<img src="Ph/FitnessFunction.svg" width="700px" height="300px">
+<img src="resources/FitnessFunction.svg" width="700px" height="300px">
 </div>
 
 ### 3.6 Termination Criteria : 
@@ -114,19 +106,19 @@ Selection is the process of selecting parents to generate the Child we call it a
 * **Roulette Wheel Selection :** each parent is represented in The wheel with a portion depends on his Fitness Value , The Parent with the Best Fitness Value have the best chance to be selected .
 
 <div align="center" >
-<img src="Ph/RouletteWheel.svg" width="700px" height="300px">
+<img src="resources/RouletteWheel.svg" width="700px" height="300px">
 </div> 
 
 * **Stochastic Universal Sampling Selection (SUS Selection) :** Stochastic Universal Sampling is Very similar to Roulette Wheel , but in Sus Selection we use more than one Fixed Point . 
 
 <div align="center" >
-<img src="Ph/SUS.svg" width="700px" height="300px">
+<img src="resources/SUS.svg" width="700px" height="300px">
 </div>
 
 * **Tournament Selection :** The First Thing We do is we choose a Number K that represents The Tournament Pool Size , then We select K individuals from The Current Population and we put Them into the Pool , After This we Choose The Best Individual from our Pool (The Individual that have the best Fitness Value ) .
 
 <div align="center" >
-<img src="Ph/Tournament.svg" width="700px" height="300px">
+<img src="resources/Tournament.svg" width="700px" height="300px">
 </div>
 
 * **Rank Selection :** when the problem is very close to converge , The individuals in our Population have a very close Fitness Value , if we use Roulette wheel , they will have the same probability to be selected , we need to represents our chromosomes in The Wheel Using Different Parameter , instead of Using The Fitness Value  we will Use The Rank  ,  so that the chromosomes that have a good ranking they will have a better chance to be selected .
@@ -138,25 +130,25 @@ The crossing operation is the Process of reproduction of new chromosomes from th
 * **One Point Crossover :** a random Point is chosen to be The CrossOver Point , then we fill the child with genes from both parents 
 
 <div align="center" >
-<img src="Ph/OnePoint.svg" width="700px" height="300px">
+<img src="resources/OnePoint.svg" width="700px" height="300px">
 </div>
 
 * **Multi Point Crossover :** a random two Points are chosen to be The CrossOver Points , then we fill the child with genes from both parents 
 
 <div align="center" >
-<img src="Ph/TwoPoint.svg" width="700px" height="300px">
+<img src="resources/TwoPoint.svg" width="700px" height="300px">
 </div>
 
 * **Davis Order Crossover (OX1) :** we Choose two random crossover points in the first  parent and we copy that segment into the Child , then we fill the rest  of genes in our child with the genes from the second Parent .
 
 <div align="center" >
-<img src="Ph/OX1.svg" width="700px" height="300px">
+<img src="resources/OX1.svg" width="700px" height="300px">
 </div>
 
 * **Uniform CrossOver :** we flip a coin for each genes in our two parents to decide whether or not it’ll be included in the off-spring (Child ).
 
 <div align="center" >
-<img src="Ph/uniform.svg" width="700px" height="300px">
+<img src="resources/uniform.svg" width="700px" height="300px">
 </div>
 
 * **Whole Arithmetic Recombination :** we use this two formula to forms our two children .
@@ -167,7 +159,7 @@ Child2 = α.x + (1-α).y
 Then we Choose The Best Child (The Child with The Best Fitness Value ).
 
 <div align="center" >
-<img src="Ph/WholeArithmetic.svg" width="700px" height="300px">
+<img src="resources/WholeArithmetic.svg" width="700px" height="300px">
 </div>
 
 ### 4.3 Mutation :  
@@ -176,25 +168,25 @@ the mutation can be defined as a small random modification of the chromosome, to
 * **Bit flip Mutation :** we select one or more random points (Bits) and flip them. This is used for binary encoded Genetic Algorithms .
 
 <div align="center" >
-<img src="Ph/BitFlip.svg" width="700px" height="300px">
+<img src="resources/BitFlip.svg" width="700px" height="300px">
 </div>
 
 * **Swap Mutation :** we Choose two Point and we switch them .
 
 <div align="center" >
-<img src="Ph/Swap.svg" width="700px" height="300px">
+<img src="resources/Swap.svg" width="700px" height="300px">
 </div>
 
 * **Scramble Mutation :** we choose a random segment in The Current Chromosome and we interchange the values .
 
 <div align="center" >
-<img src="Ph/Scramble.svg" width="700px" height="300px">
+<img src="resources/Scramble.svg" width="700px" height="300px">
 </div>
 
 * **Mutation Inversion :** we choose a random segment in The Current Chromosome and we reverse The Order of the values .
 
 <div align="center" >
-<img src="Ph/Inversion.svg" width="700px" height="300px">
+<img src="resources/Inversion.svg" width="700px" height="300px">
 </div>
 
 ## 5. Applications :
@@ -395,7 +387,7 @@ but before going further we need to answer this questions :
 Genetic Algorithm gives as this result which very good , I intentionally choose a small population size, so we can see the steps, because the genetic algorithm is very fast to optimize this simple function that we have  , if we use a large population size .
 
 <div align="center" >
-<img src="Ph/OptimizeMathFunction.PNG" width="400px" height="200px">
+<img src="resources/OptimizeMathFunction.PNG" width="400px" height="200px">
 </div>
 
 
@@ -412,13 +404,13 @@ In This Example we will use The Genetic Algorithm to solve The travelling salesm
 "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
 
 <div align="center" >
-<img src="Ph/TSP.PNG" width="300px" height="200px">
+<img src="resources/TSP.PNG" width="300px" height="200px">
 </div>
 
 The Travelling Salesman can ve expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
 
 <div align="center" >
-<img src="Ph/TSPFormula.PNG" width="250px" height="50px">
+<img src="resources/TSPFormula.PNG" width="250px" height="50px">
 </div>
 
 but before going further we need to answer this questions :
@@ -448,11 +440,11 @@ but before going further we need to answer this questions :
 <p>
     The Fitness Function in Our Case is The function that calculate the Distance of candidate path , which is represented as bellow :
     <div align="center" >
-    <img src="Ph/fitness.PNG" width="250px" height="50px">
+    <img src="resources/fitness.PNG" width="250px" height="50px">
     </div>
     with d(T[i] , T[j]) is the euclidean distance function , that give us the distance between the city number i and the city number j in The T trajectory , we can express this function using this formula :
     <div align="center" >
-    <img src="Ph/distance.PNG" width="250px" height="50px">
+    <img src="resources/distance.PNG" width="250px" height="50px">
     </div>
 </p>
 
@@ -772,7 +764,7 @@ The best path in the first generation was with a distance of 23356,380859 km, an
 </p>
 
 <div align="center" >
-    <img src="Ph/TSPResult.png" width="400px" height="300px">
+    <img src="resources/TSPResult.png" width="400px" height="300px">
 </div>
 
 

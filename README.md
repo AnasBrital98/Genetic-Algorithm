@@ -148,7 +148,7 @@ The crossing operation is the Process of reproduction of new chromosomes from th
 * **Uniform CrossOver :** we flip a coin for each genes in our two parents to decide whether or not it’ll be included in the off-spring (Child ).
 
 <div align="center" >
-<img src="resources/uniform.svg" width="700px" height="300px">
+<img src="resources/Uniform.svg" width="700px" height="300px">
 </div>
 
 * **Whole Arithmetic Recombination :** we use this two formula to forms our two children .
@@ -404,13 +404,13 @@ In This Example we will use The Genetic Algorithm to solve The travelling salesm
 "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
 
 <div align="center" >
-<img src="resources/TSP.PNG" width="300px" height="200px">
+<img src="resources/TSP.png" width="300px" height="200px">
 </div>
 
 The Travelling Salesman can ve expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
 
 <div align="center" >
-<img src="resources/TSPFormula.PNG" width="250px" height="50px">
+<img src="resources/TSPFormula.png" width="250px" height="50px">
 </div>
 
 but before going further we need to answer this questions :
@@ -440,11 +440,11 @@ but before going further we need to answer this questions :
 <p>
     The Fitness Function in Our Case is The function that calculate the Distance of candidate path , which is represented as bellow :
     <div align="center" >
-    <img src="resources/fitness.PNG" width="250px" height="50px">
+    <img src="resources/fitness.png" width="250px" height="50px">
     </div>
     with d(T[i] , T[j]) is the euclidean distance function , that give us the distance between the city number i and the city number j in The T trajectory , we can express this function using this formula :
     <div align="center" >
-    <img src="resources/distance.PNG" width="250px" height="50px">
+    <img src="resources/distance.png" width="250px" height="50px">
     </div>
 </p>
 

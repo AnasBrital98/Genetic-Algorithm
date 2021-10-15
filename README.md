@@ -1,7 +1,7 @@
 # Genetic Algorithm Explained
 
 <p>
-In This Article i will try to give an Introduction to Genetic Algorithm , and we will see how can we use it to solve some very complicated Problems .
+In This Article i will try to give you an Introduction to The Genetic Algorithm , and we will see how can we use it to solve some very complicated Problems .
 
 <div align="center" >
 <img src="resources/GeneticAlgoCover.jpg" width="600px" height="300px">

@@ -393,10 +393,193 @@ Genetic Algorithm gives as this result which very good , I intentionally choose 
 
 ### 5.2 Using Genetic Algorithm to Optimize a Neural Network .
 
+In This Example we'll see how to optimize a neural network using Genetic Algorithm .
+
+<div align="center" >
+<img src="resources/nn.svg" width="300px" height="200px">
+</div>
+
+Training a neural network, is the process of finding the best weights and biases that will reduce the loss function, using an optimization algorithm such as gradient descent, in this example we are trying to replace the gradient descent algorithm with the genetic algorithm, instead of using gradient descent to update the weights and biases, we will use the genetic algorithm, the diagram below It accurately explains what we are trying to do.
+
+<div align="center" >
+<img src="resources/Architecture.jpg" width="600px" height="200px">
+</div>
+
+This is our simple neural network, which only has a feed Forward function, it's the only thing we need:
+
 
 ```python
-    Using Genetic Algorithm to Optimize a Neural Network
+class NeuralNetwork:
+    
+    def __init__(self , x , y , layers ):
+        
+        self.x_train = x.T
+        self.y_train = y.reshape(1 , y.shape[0])
+        self.layers = layers 
+        self.weights = []
+        self.biases = []
+        
+        for i in range(1 , len(self.layers)):
+            self.weights.append(np.random.randn(self.layers[i] , self.layers[i-1]))
+            self.biases.append(np.random.randn(self.layers[i] , 1))
+    
+    def sigmoid(self,x):
+        return 1/(1+np.exp(-x))
+    
+    def mean_Squared_Error(self , y_hat):
+        return (1/self.y_train.shape[1] ) * np.sum((self.y_train - y_hat) ** 2)
+    
+    def feedforward(self , weights = None , biases = None):
+        if weights == None and biases == None :
+            weights , biases = self.weights , self.biases
+        self.activations = {'A0' : self.x_train}
+        for i in range(1 , len(self.layers)):
+            z = np.dot(weights[i-1] , self.activations['A'+str(i-1)]) + biases[i-1]
+            self.activations['A'+str(i)] = self.sigmoid(z)
+        return self.activations['A'+str(len(self.layers) -1)]          
 ```
+
+* the chromosome in our case is represented by this class , that contains a list of candidate weights and biases ,and  the fitness value of each chromosome is represented by the mean squared error   :
+
+```python
+
+class Chromosome:
+    def __init__(self , NeuralNetwork , weights = None , biases = None):
+        self.NeuralNetwork = NeuralNetwork
+        self.weights = weights if weights != None else [np.random.randn(self.NeuralNetwork.layers[i] , self.NeuralNetwork.layers[i-1]) for i in range(1 , len(self.NeuralNetwork.layers))]
+        self.biases  =  biases if biases != None else [np.random.randn(self.NeuralNetwork.layers[i] , 1) for i in range(1 , len(self.NeuralNetwork.layers))]
+        self.fitness = self.calculateFitness()
+        
+    def calculateFitness(self):
+        y_hat = self.NeuralNetwork.feedforward(weights = self.weights , biases = self.biases)
+        fitness = self.NeuralNetwork.mean_Squared_Error(y_hat)
+        return fitness
+```
+
+* The Population in our case is represented by this class (list of candidate weights and biases ) :
+  
+```python
+class Population:
+    def __init__(self , populationSize , NeuralNetwork , chromosomes = None):
+        self.populationSize = populationSize
+        self.NeuralNetwork  = NeuralNetwork
+        self.chromosomes = chromosomes if chromosomes != None else [Chromosome(NeuralNetwork = self.NeuralNetwork) for i in range(self.populationSize)]
+        self.fittest = self.getFittestChromosome()
+    
+    
+    def getFittestChromosome(self):
+        if None in self.chromosomes :
+            print('List Contains a None')
+        self.chromosomes.sort(key = lambda x:x.fitness)
+        return self.chromosomes[0]
+    
+    def getNFittestChromosome(self , n):
+        self.chromosomes.sort(key = lambda x:x.fitness)
+        return self.chromosomes[:n]
+```
+
+* The Genetic Algorithm is represented by this class :
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import random
+
+class GeneticAlgorithm :
+    
+    def __init__(self , Neural_Network , nbrGenerations , populationSize , elitismSize , tournamentPoolSize , mutationRate):
+        self.NeuralNetwork = Neural_Network
+        self.nbrGenerations = nbrGenerations
+        self.populationSize = populationSize
+        self.elitismSize = elitismSize
+        self.tournamentPoolSize = tournamentPoolSize
+        self.mutationRate = mutationRate
+        
+        temp_population   = Population(self.populationSize, self.NeuralNetwork) # temp population is The Initial Population
+        generationCounter = 0
+        mean_squred_errors = []
+        
+        for i in range(self.nbrGenerations):
+           print(f'Generation Number : {generationCounter}  , mean Squared Error : {temp_population.fittest.fitness}') 
+           mean_squred_errors.append(temp_population.fittest.fitness)
+           temp_population = self.reproduction(temp_population)
+           generationCounter += 1
+           #Update The Weights and The Biases
+           self.NeuralNetwork.weights = temp_population.fittest.weights
+           self.NeuralNetwork.biases  = temp_population.fittest.biases
+        plt.plot( np.arange(generationCounter) ,mean_squred_errors )  
+        plt.xlabel(" Generation Number ")
+        plt.ylabel(" MSE Value ")
+        plt.title(" Optimizing a Neural Network Using Genetic Algorithm ")
+        plt.show()
+        
+        
+    def reproduction(self , population):
+         temp_chromosomes = []
+         temp_chromosomes[:self.elitismSize]= population.getNFittestChromosome(self.elitismSize)
+         
+         for i in range(self.elitismSize , self.populationSize):
+             parent1 = self.tournamentSelection(population)
+             parent2 = self.tournamentSelection(population)
+             
+             child = self.TwoPointCrossOver(parent1, parent2)
+             
+             child = self.ChangeMutation(child)
+             
+             temp_chromosomes.append(child)
+             
+             
+         new_pop = Population(self.populationSize, self.NeuralNetwork , chromosomes=temp_chromosomes) 
+         
+         return new_pop                
+     
+    def tournamentSelection(self , population ):
+         tournamentPool = []
+         for i in range(self.tournamentPoolSize):
+             index = random.randint(0 , self.populationSize -1)
+             tournamentPool.append(population.chromosomes[index])
+         tournamentPool.sort(key = lambda x:x.fitness)
+         return tournamentPool[0]
+     
+    def TwoPointCrossOver(self , parent1 , parent2):
+        temp_Weights , temp_biases = [] , []
+        
+        crossOverPoint = random.randint(0, len(self.NeuralNetwork.layers) -2)
+        
+        temp_Weights[:crossOverPoint] = parent2.weights[:crossOverPoint]
+        temp_Weights[crossOverPoint:] = parent2.weights[crossOverPoint:]
+        temp_biases[:crossOverPoint] = parent2.biases[:crossOverPoint]
+        temp_biases[crossOverPoint:] = parent2.biases[crossOverPoint:]
+        
+        child = Chromosome(NeuralNetwork=self.NeuralNetwork , weights=temp_Weights , biases = temp_biases)
+        
+        return child
+        
+    def ChangeMutation(self , child):
+        if random.random() < self.mutationRate :
+            mutationPoint = random.randint(0, len(self.NeuralNetwork.layers) -2)
+            child.weights[mutationPoint] = np.random.randn(self.NeuralNetwork.layers[mutationPoint + 1 ] , self.NeuralNetwork.layers[mutationPoint])
+            child.biases[mutationPoint] = np.random.randn(self.NeuralNetwork.layers[mutationPoint  + 1 ] , 1)
+            child.fitness = child.calculateFitness()
+        return child
+```
+
+* The Main Class contains this instructions :
+
+```python
+#The First thing we need is the data 
+x, y = make_blobs(n_samples=1000 , n_features=4 , centers=2 , random_state=0)
+#The Second thing we need is a neural network  
+Neural_Network = NeuralNetwork(x , y , layers=(4 , 16 , 16 , 1))
+#Now we give our neural network to the genetic algorithm to optimize it .
+Genetic_Algorithm = GeneticAlgorithm(Neural_Network = Neural_Network , nbrGenerations = 200, populationSize = 100 , elitismSize = 10, tournamentPoolSize = 5, mutationRate = 0.1)
+```
+
+* this graph represent The Optimization process of the MSE (Mean Squared Error) by the genetic Algorithm  :
+  
+<div align="center" >
+<img src="resources/result.PNG" width="300px" height="200px">
+</div>
 
 ### 5.3 Using Genetic Algorithm to Solve The Travelling Salesman Problem .
 

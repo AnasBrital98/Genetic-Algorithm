@@ -578,7 +578,7 @@ Genetic_Algorithm = GeneticAlgorithm(Neural_Network = Neural_Network , nbrGenera
 * this graph represent The Optimization process of the MSE (Mean Squared Error) by the genetic Algorithm  :
   
 <div align="center" >
-<img src="resources/result.PNG" width="300px" height="200px">
+<img src="resources/result.png" width="300px" height="200px">
 </div>
 
 ### 5.3 Using Genetic Algorithm to Solve The Travelling Salesman Problem .
@@ -950,6 +950,7 @@ The best path in the first generation was with a distance of 23356,380859 km, an
     <img src="resources/TSPResult.png" width="400px" height="300px">
 </div>
 
+if you want to see the implementation of Genetic algorithm to the travelling salesman problem in other languages check this link [Implementation](https://github.com/AnasBrital98/Genetic-Algorithm-in-all-languages). 
 
 ## 6. References :
 

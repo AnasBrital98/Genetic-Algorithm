@@ -353,7 +353,7 @@ but before going further we need to answer this questions :
 
 ```python
 
-     #function to be Optimize        
+    #function to be Optimize        
     def f(x):
         return pow(x, 2) + 2 * x - 1
     
@@ -465,8 +465,7 @@ class Population:
         self.NeuralNetwork  = NeuralNetwork
         self.chromosomes = chromosomes if chromosomes != None else [Chromosome(NeuralNetwork = self.NeuralNetwork) for i in range(self.populationSize)]
         self.fittest = self.getFittestChromosome()
-    
-    
+        
     def getFittestChromosome(self):
         if None in self.chromosomes :
             print('List Contains a None')
@@ -590,7 +589,7 @@ In This Example we will use The Genetic Algorithm to solve The travelling salesm
 <img src="resources/TSP.png" width="300px" height="200px">
 </div>
 
-The Travelling Salesman can ve expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
+The Travelling Salesman can be expressed using This Formula , with T[i] is a candidate Trajectory to our Problem  :
 
 <div align="center" >
 <img src="resources/TspFormula.PNG" width="250px" height="50px">
@@ -901,7 +900,7 @@ class geneticAlgorithm :
         plt.show()
 ```
 
-* The Main:
+* The Main class :
 
 ```python
 from GeneticAlgorithm import geneticAlgorithm
@@ -933,7 +932,6 @@ def readDataSet(filename):
 
 def getNbrCities():
     return len(cities)
-
 
 def getRandomCity():
     index  = random.randint(0,getNbrCities()-1)   
